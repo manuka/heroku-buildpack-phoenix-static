@@ -51,10 +51,10 @@ install_npm() {
 install_and_cache_npm_deps() {
   info "Installing and caching node modules (--no-optional dependencies)"
   cd $phoenix_dir
-  if [ -d $cache_dir/node_modules ]; then
-    mkdir -p node_modules
-    cp -r $cache_dir/node_modules/* node_modules/
-  fi
+  # if [ -d $cache_dir/node_modules ]; then
+  #   mkdir -p node_modules
+  #   cp -r $cache_dir/node_modules/* node_modules/
+  # fi
 
   npm install  --loglevel verbose --no-optional --unsafe-perm --userconfig $build_dir/npmrc 2>&1 | indent
   npm rebuild 2>&1 | indent
