@@ -44,7 +44,7 @@ install_npm() {
   else
     info "Downloading and installing npm $npm_version (replacing version `npm --version`)..."
     cd $build_dir
-    npm install --no-optional --unsafe-perm --quiet -g npm@$npm_version 2>&1 >/dev/null | indent
+    npm install  --loglevel verbose --no-optional --unsafe-perm -g npm@$npm_version 2>&1 >/dev/null | indent
   fi
 }
 
@@ -56,7 +56,7 @@ install_and_cache_npm_deps() {
     cp -r $cache_dir/node_modules/* node_modules/
   fi
 
-  npm install --no-optional --quiet --unsafe-perm --userconfig $build_dir/npmrc 2>&1 | indent
+  npm install  --loglevel verbose --no-optional --unsafe-perm --userconfig $build_dir/npmrc 2>&1 | indent
   npm rebuild 2>&1 | indent
   npm --unsafe-perm prune 2>&1 | indent
   cp -r node_modules $cache_dir
